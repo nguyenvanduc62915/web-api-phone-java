@@ -3,11 +3,13 @@ package com.example.webapiphonejava.DTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class BillDTO {
     private int billId;
     private LocalDate orderDate;

@@ -11,4 +11,12 @@ public class Constant {
     public static final int NOT_FOUND_CODE = 404;
     public static final int BAD_REQUEST_CODE = 400;
     public static final int SUCCESS_CODE = 200;
+
+    public static final String EMPTY_ALL_BILL = "Không tìm thấy Bill nào";
+    public static final String ERROR_TO_GET_BILL = "Gặp lỗi trong quá trình lấy Bill";
+    public static final String EMPTY_BILL_ID = "Không tìm thấy Bill có Id là ";
+
+    public static final String EMPTY_ALL_BILLDETAILS = "Không tìm thấy BillDetails nào";
+    public static final String ERROR_TO_GET_BILLDETAILS = "Gặp lỗi trong quá trình lấy BillDetails";
+    public static final String EMPTY_BILLDETAILS_ID = "Không tìm thấy BillDetails có Id là ";
 }

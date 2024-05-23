@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class ProductDTO {
     private int productId;
     @Size(max = 100, message = "Tên sản phẩm cho phép tối đa 100 kỹ tự!")
-    private int productName;
+    private String productName;
     @Size(max = 50, message = "Ảnh sản phẩm cho phép tối đa 100 kỹ tự!")
     private int productImage;
     private int price;

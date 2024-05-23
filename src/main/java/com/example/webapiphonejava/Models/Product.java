@@ -22,7 +22,7 @@ public class Product extends BaseEntity {
     private int id;
     @Column(name = "product_name")
     @Size(max = 100, message = "Tên sản phẩm cho phép tối đa 100 kỹ tự!")
-    private int productName;
+    private String productName;
     @Column(name = "product_image")
     @Size(max = 50, message = "Ảnh sản phẩm cho phép tối đa 100 kỹ tự!")
     private int productImage;
