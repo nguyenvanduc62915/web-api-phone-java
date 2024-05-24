@@ -33,7 +33,7 @@ public class BillController {
     @PutMapping("/update")
     public ResponseEntity<BaseResponse<BillDTO>> updateBillById(
             @Valid @RequestBody BillDTO billDTO,
-            Integer billId
+            @RequestParam("billId") Integer billId
     ){
         BaseResponse<BillDTO> baseResponse = billService.updateBillById(billDTO, billId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
