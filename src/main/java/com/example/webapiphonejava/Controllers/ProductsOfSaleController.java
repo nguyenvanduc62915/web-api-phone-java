@@ -25,17 +25,21 @@ public class ProductsOfSaleController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse<ProductsOfSaleDTO>> addProductsOfSale(@Valid @RequestBody ProductsOfSaleDTO productsOfSaleDTO ){
-        BaseResponse<ProductsOfSaleDTO> baseResponse = productsOfSaleService.addProductsOfSale(productsOfSaleDTO);
+    public ResponseEntity<BaseResponse<ProductsOfSaleDTO>> addProductsOfSale(
+            @Valid @RequestBody ProductsOfSaleDTO productsOfSaleDTO,
+            @RequestParam("productId") Integer productId
+            ){
+        BaseResponse<ProductsOfSaleDTO> baseResponse = productsOfSaleService.addProductsOfSale(productsOfSaleDTO, productId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
     public ResponseEntity<BaseResponse<ProductsOfSaleDTO>> updateProductsOfSaleById(
             @Valid @RequestBody ProductsOfSaleDTO productsOfSaleDTO,
-            @RequestParam("productsOfSaleId") Integer productsOfSaleId
+            @RequestParam("productsOfSaleId") Integer productsOfSaleId,
+            @RequestParam("productId") Integer productId
     ) {
-        BaseResponse<ProductsOfSaleDTO> baseResponse = productsOfSaleService.updateProductsOfSaleById(productsOfSaleDTO, productsOfSaleId);
+        BaseResponse<ProductsOfSaleDTO> baseResponse = productsOfSaleService.updateProductsOfSaleById(productsOfSaleDTO, productsOfSaleId, productId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 

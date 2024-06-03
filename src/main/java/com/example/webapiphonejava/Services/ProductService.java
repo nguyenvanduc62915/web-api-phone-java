@@ -2,10 +2,13 @@ package com.example.webapiphonejava.Services;
 
 import com.example.webapiphonejava.DTO.BaseResponse;
 import com.example.webapiphonejava.DTO.ProductDTO;
+import com.example.webapiphonejava.Models.Category;
 import com.example.webapiphonejava.Models.Product;
+import com.example.webapiphonejava.Repositories.CategorRepository;
 import com.example.webapiphonejava.Repositories.ProductRepository;
 import com.example.webapiphonejava.Services.Imp.ProductImp;
 import com.example.webapiphonejava.Utils.Constant;
+import com.example.webapiphonejava.Utils.ConvertRelationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,12 @@ import java.util.List;
 public class ProductService implements ProductImp {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CategorRepository categorRepository;
+
+    @Autowired
+    private ConvertRelationship convertRelationship;
 
     @Override
     public BaseResponse<List<ProductDTO>> getAllProduct() {
@@ -51,6 +60,7 @@ public class ProductService implements ProductImp {
                 productDTO.setEndSale(product.getEndSale());
                 productDTO.setCreateAt(product.getCreateAt());
                 productDTO.setUpdateAt(product.getUpdateAt());
+                productDTO.setCategory(convertRelationship.convertToCategoryDTO(product.getCategory()));
                 productDTOList.add(productDTO);
             }
             baseResponse.setData(productDTOList);
@@ -64,9 +74,15 @@ public class ProductService implements ProductImp {
     }
 
     @Override
-    public BaseResponse<ProductDTO> addProduct(ProductDTO productDTO) {
+    public BaseResponse<ProductDTO> addProduct(ProductDTO productDTO, Integer categoryId) {
         BaseResponse<ProductDTO> baseResponse = new BaseResponse<>();
         try {
+            Category category = categorRepository.findCategoryById(categoryId);
+            if (category == null) {
+                baseResponse.setMessage(Constant.EMPTY_CATEGORY_ID + categoryId);
+                baseResponse.setCode(Constant.NOT_FOUND_CODE);
+                return baseResponse;
+            }
             Product product = new Product();
             product.setProductImage(productDTO.getProductImage());
             product.setProductName(productDTO.getProductName());
@@ -87,6 +103,7 @@ public class ProductService implements ProductImp {
             product.setMemoryCard(productDTO.getMemoryCard());
             product.setEndSale(productDTO.getEndSale());
             product.setCreateAt(productDTO.getCreateAt());
+            product.setCategory(category);
             productRepository.save(product);
             baseResponse.setData(productDTO);
             baseResponse.setMessage(Constant.SUCCESS_ADD_MESSAGE);
@@ -99,12 +116,18 @@ public class ProductService implements ProductImp {
     }
 
     @Override
-    public BaseResponse<ProductDTO> updateProductById(ProductDTO productDTO, Integer productId) {
+    public BaseResponse<ProductDTO> updateProductById(ProductDTO productDTO, Integer productId, Integer categoryId) {
         BaseResponse<ProductDTO> baseResponse = new BaseResponse<>();
         try {
             Product product = productRepository.findProductById(productId);
             if (product == null){
                 baseResponse.setMessage(Constant.EMPTY_PRODUCT_ID + productId);
+                baseResponse.setCode(Constant.NOT_FOUND_CODE);
+                return baseResponse;
+            }
+            Category category = categorRepository.findCategoryById(categoryId);
+            if (category == null) {
+                baseResponse.setMessage(Constant.EMPTY_CATEGORY_ID + categoryId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
@@ -127,6 +150,7 @@ public class ProductService implements ProductImp {
             product.setMemoryCard(productDTO.getMemoryCard());
             product.setEndSale(productDTO.getEndSale());
             product.setUpdateAt(productDTO.getUpdateAt());
+            product.setCategory(category);
             productRepository.save(product);
             baseResponse.setData(productDTO);
             baseResponse.setMessage(Constant.SUCCESS_UPDATE_MESSAGE);

@@ -25,16 +25,21 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse<ProductDTO>> addProduct(@Valid @RequestBody ProductDTO productDTO) {
-        BaseResponse<ProductDTO> baseResponse = productService.addProduct(productDTO);
+    public ResponseEntity<BaseResponse<ProductDTO>> addProduct(
+            @Valid @RequestBody ProductDTO productDTO,
+            @RequestParam("categoryId") Integer categoryId
+    ) {
+        BaseResponse<ProductDTO> baseResponse = productService.addProduct(productDTO, categoryId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
     public ResponseEntity<BaseResponse<ProductDTO>> updateProductById(
             @Valid @RequestBody ProductDTO productDTO,
-            @RequestParam("productId") Integer productId) {
-        BaseResponse<ProductDTO> baseResponse = productService.updateProductById(productDTO, productId);
+            @RequestParam("productId") Integer productId,
+            @RequestParam("categoryId") Integer categoryId
+    ) {
+        BaseResponse<ProductDTO> baseResponse = productService.updateProductById(productDTO, productId, categoryId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 

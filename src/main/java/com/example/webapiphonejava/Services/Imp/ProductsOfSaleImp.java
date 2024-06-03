@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductsOfSaleImp {
     BaseResponse<List<ProductsOfSaleDTO>> getAllProductsOfSale();
-    BaseResponse<ProductsOfSaleDTO> addProductsOfSale(ProductsOfSaleDTO productsOfSaleDTO);
-    BaseResponse<ProductsOfSaleDTO> updateProductsOfSaleById(ProductsOfSaleDTO productsOfSaleDTO, Integer productsOfSaleId);
+    BaseResponse<ProductsOfSaleDTO> addProductsOfSale(ProductsOfSaleDTO productsOfSaleDTO, Integer productId);
+    BaseResponse<ProductsOfSaleDTO> updateProductsOfSaleById(ProductsOfSaleDTO productsOfSaleDTO, Integer productsOfSaleId, Integer productId);
     BaseResponse<ProductsOfSaleDTO> deleteProductsOfSaleById(Integer productsOfSaleId);
 }

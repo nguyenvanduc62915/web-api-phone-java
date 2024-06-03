@@ -91,13 +91,14 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   ├───main
 |   |   ├───java
 |   |   |   ├───com.example.wedapiphonejava
-|   |   |   |   ├───Configuarations
+|   |   |   |   ├───Configuarations ( File này có chức năng cấu hình của dự án )
 |   |   |   |   |   |
-|   |   |   |   |   | SeedDataConfiguaration ( File này có chức năng tạo Database ban đầu )
+|   |   |   |   |   | SeedDataConfiguaration ( Database ban đầu của dự án)
 |   |   |   |   |   |
-|   |   |   |   ├───Controllers 
+|   |   |   |   ├───Controllers ( File này có chức năng quyết định dữ liệu hiển thị như nào )
 |   |   |   |   |   |
-|   |   |   |   |   |   BillController
+|   |   |   |   |   |   Các class dưới có nhiệm vụ xử lý CRUD của dự án
+|   |   |   |   |   |   BillController 
 |   |   |   |   |   |   BillDetailsConttroller
 |   |   |   |   |   |   CategoryController
 |   |   |   |   |   |   ConditionController
@@ -109,8 +110,9 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   |   |   |   |   |   ShipperController
 |   |   |   |   |   |   UserController
 |   |   |   |   |   |
-|   |   |   |   ├───DTO
+|   |   |   |   ├───DTO ( File này có chức năng giảmn số lần gọi các method giữa các tiến trình )
 |   |   |   |   |   |
+|   |   |   |   |   |   Các class dưới có nhiệm vụ khai báo dữ liệu khi trả về cho người dùng tránh lộ database gốc 
 |   |   |   |   |   |   BillDTO
 |   |   |   |   |   |   BillDetailsDTO
 |   |   |   |   |   |   CategoryDTO
@@ -123,12 +125,13 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   |   |   |   |   |   ShipperDTO
 |   |   |   |   |   |   UserDTO
 |   |   |   |   |   |
-|   |   |   |   ├───Exception
+|   |   |   |   ├───Exception ( File này có chức năng xử lý các lỗi ngoại lệ )
 |   |   |   |   |   |
 |   |   |   |   |   |   ValidateExceptionHandler
 |   |   |   |   |   |
-|   |   |   |   ├───Models          ( File này đại diện cấu trúc dữ liệu của dự án )            
+|   |   |   |   ├───Models  ( File này đại diện cấu trúc dữ liệu của dự án )            
 |   |   |   |   |   |
+|   |   |   |   |   |   Các class dưới có nhiệm vụ tự sinh ra database cho dự án
 |   |   |   |   |   |   Bill
 |   |   |   |   |   |   BillDetails
 |   |   |   |   |   |   Category
@@ -141,8 +144,9 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   |   |   |   |   |   Shipper
 |   |   |   |   |   |   User
 |   |   |   |   |   |
-|   |   |   |   ├───Repositories
+|   |   |   |   ├───Repositories ( File này có chức năng phục vụ việc truy xuất database )
 |   |   |   |   |   |
+|   |   |   |   |   |   Các interface dưới có nhiệm vụ truy xuất dữ liệu
 |   |   |   |   |   |   Bill
 |   |   |   |   |   |   BillDetails
 |   |   |   |   |   |   Category
@@ -155,24 +159,53 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   |   |   |   |   |   Shipper
 |   |   |   |   |   |   User
 |   |   |   |   |   |
-|   |   |   |   ├───Services
-|   |   |   |   |   |
+|   |   |   |   ├───Services ( File này có chức năng xử lý logic trước khi hiển thị )
+|   |   |   |   |   ├───Imp  
+|   |   |   |   |   |   |
+|   |   |   |   |   |   |   Các interface dưới có nhiệm  vụ khai báo các lớp trừu tượng  
+|   |   |   |   |   |   |   BillImp
+|   |   |   |   |   |   |   BillDetailsImp
+|   |   |   |   |   |   |   CategoryImp
+|   |   |   |   |   |   |   ConditionImp
+|   |   |   |   |   |   |   CommentImp
+|   |   |   |   |   |   |   CustomerImp
+|   |   |   |   |   |   |   OrderImp
+|   |   |   |   |   |   |   ProductImp
+|   |   |   |   |   |   |   ProductsOfSaleImp
+|   |   |   |   |   |   |   ShipperImp
+|   |   |   |   |   |   |   UserImp
+|   |   |   |   |   |   |
+|   |   |   |   |   |   Các class dưới có nhiệm vụ xử lý logic, nghiệp vụ của dự án
 |   |   |   |   |   |   BillSerivce
-|   |   |   |   |   |   BillDetails
-|   |   |   |   |   |   Category
-|   |   |   |   |   |   Condition
-|   |   |   |   |   |   Comment
-|   |   |   |   |   |   Customer
-|   |   |   |   |   |   Order
-|   |   |   |   |   |   Product
-|   |   |   |   |   |   ProductsOfSale
-|   |   |   |   |   |   Shipper
-|   |   |   |   |   |   User
+|   |   |   |   |   |   BillDetailsSerivce
+|   |   |   |   |   |   CategorySerivce
+|   |   |   |   |   |   ConditionSerivce
+|   |   |   |   |   |   CommentSerivce
+|   |   |   |   |   |   CustomerSerivce
+|   |   |   |   |   |   OrderSerivce
+|   |   |   |   |   |   ProductSerivce
+|   |   |   |   |   |   ProductsOfSaleSerivce
+|   |   |   |   |   |   ShipperSerivce
+|   |   |   |   |   |   UserSerivce
 |   |   |   |   |   |
-|   |   |   |   ├───Utils
+|   |   |   |   ├───Utils  ( File này có chức năng làm giảm tải code ở các tầng trên)
 |   |   |   |   |   |
 |   |   |   |   |   |   Contstant
-|   |   |   |   |   |   ConvertRelationship
+|   |   |   |   |   |   ConvertRelationship ( Class ngày có chức năng chuyển đổi dữ liệu qua lại cho nhau giữa Models và DTO)
 |   |   |   |   |   |
-|   |   |   |   ├───WebApiPhoneJavaApplication
+|   |   |   |   ├───WebApiPhoneJavaApplication ( Khởi động một ứng dụng spring boot khi gọi nó )
+|   |   |   |   |
+|   |   |   ├───resources
+|   |   |   |   |
+|   |   |   |   |   static
+|   |   |   |   |   templates 
+|   |   |   |   |   application.properties ( File này có chức năng cấu hình dự án theo chuẩn properties)
+|   |   |   |   |   application.yml ( File này có chức năng cấu hình dự án theo chuẩn yml)
+|   |   |   |   |
+├───mwnw ( File này có chức năng tài và cài đặt Apache Maven nếu chưa cài đặt trên hệ thống sau đó chạy Maven)
+|   |   |   |   |
+├───mvnw.cmd (  File này có chức năng đảm bảo Apache Maven có sẵn và được sử dụng trong hệ thống )
+|   |   |   |   |
+├───pom (  File  trung tâm của dự án có chức năng cấu hình mà Maven xử lý)
+|   |   |   |   |
 ```

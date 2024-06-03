@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CommentImp {
     BaseResponse<List<CommentDTO>> getAllComment();
-    BaseResponse<CommentDTO> addComment(CommentDTO commentDTO);
-    BaseResponse<CommentDTO> updateCommentById(CommentDTO commentDTO, Integer commentId);
+    BaseResponse<CommentDTO> addComment(CommentDTO commentDTO, Integer productId);
+    BaseResponse<CommentDTO> updateCommentById(CommentDTO commentDTO, Integer commentId, Integer productId);
     BaseResponse<CommentDTO> deleteCommentById(Integer commentId);
 }

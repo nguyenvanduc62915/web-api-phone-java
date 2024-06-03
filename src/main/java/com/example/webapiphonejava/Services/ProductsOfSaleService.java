@@ -2,10 +2,13 @@ package com.example.webapiphonejava.Services;
 
 import com.example.webapiphonejava.DTO.BaseResponse;
 import com.example.webapiphonejava.DTO.ProductsOfSaleDTO;
+import com.example.webapiphonejava.Models.Product;
 import com.example.webapiphonejava.Models.ProductsOfSale;
+import com.example.webapiphonejava.Repositories.ProductRepository;
 import com.example.webapiphonejava.Repositories.ProductsOfSaleRepository;
 import com.example.webapiphonejava.Services.Imp.ProductsOfSaleImp;
 import com.example.webapiphonejava.Utils.Constant;
+import com.example.webapiphonejava.Utils.ConvertRelationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,12 @@ import java.util.List;
 public class ProductsOfSaleService implements ProductsOfSaleImp {
     @Autowired
     private ProductsOfSaleRepository productsOfSaleRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ConvertRelationship convertRelationship;
 
     @Override
     public BaseResponse<List<ProductsOfSaleDTO>> getAllProductsOfSale() {
@@ -34,6 +43,7 @@ public class ProductsOfSaleService implements ProductsOfSaleImp {
                 productsOfSaleDTO.setQuantity(productsOfSale.getQuantity());
                 productsOfSaleDTO.setCreateAt(productsOfSale.getCreateAt());
                 productsOfSaleDTO.setUpdateAt(productsOfSale.getUpdateAt());
+                productsOfSaleDTO.setProduct(convertRelationship.convertToProductDTO(productsOfSale.getProduct()));
                 productsOfSaleDTOList.add(productsOfSaleDTO);
             }
             baseResponse.setData(productsOfSaleDTOList);
@@ -47,13 +57,20 @@ public class ProductsOfSaleService implements ProductsOfSaleImp {
     }
 
     @Override
-    public BaseResponse<ProductsOfSaleDTO> addProductsOfSale(ProductsOfSaleDTO productsOfSaleDTO) {
+    public BaseResponse<ProductsOfSaleDTO> addProductsOfSale(ProductsOfSaleDTO productsOfSaleDTO, Integer productId) {
         BaseResponse<ProductsOfSaleDTO> baseResponse = new BaseResponse<>();
         try {
+            Product product = productRepository.findProductById(productId);
+            if (product == null){
+                baseResponse.setMessage(Constant.EMPTY_PRODUCT_ID + productId);
+                baseResponse.setCode(Constant.NOT_FOUND_CODE);
+                return baseResponse;
+            }
             ProductsOfSale productsOfSale = new ProductsOfSale();
             productsOfSale.setId(productsOfSaleDTO.getProductOrSaleId());
             productsOfSale.setQuantity(productsOfSaleDTO.getQuantity());
             productsOfSale.setCreateAt(productsOfSaleDTO.getCreateAt());
+            productsOfSale.setProduct(product);
             productsOfSaleRepository.save(productsOfSale);
             baseResponse.setData(productsOfSaleDTO);
             baseResponse.setMessage(Constant.SUCCESS_ADD_MESSAGE);
@@ -67,7 +84,7 @@ public class ProductsOfSaleService implements ProductsOfSaleImp {
 
 
     @Override
-    public BaseResponse<ProductsOfSaleDTO> updateProductsOfSaleById(ProductsOfSaleDTO productsOfSaleDTO, Integer productsOfSaleId) {
+    public BaseResponse<ProductsOfSaleDTO> updateProductsOfSaleById(ProductsOfSaleDTO productsOfSaleDTO, Integer productsOfSaleId, Integer productId) {
         BaseResponse<ProductsOfSaleDTO> baseResponse = new BaseResponse<>();
         try {
             ProductsOfSale productsOfSale = productsOfSaleRepository.findProductsOfSaleById(productsOfSaleId);
@@ -76,9 +93,16 @@ public class ProductsOfSaleService implements ProductsOfSaleImp {
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
+            Product product = productRepository.findProductById(productId);
+            if (product == null){
+                baseResponse.setMessage(Constant.EMPTY_PRODUCT_ID + productId);
+                baseResponse.setCode(Constant.NOT_FOUND_CODE);
+                return baseResponse;
+            }
             productsOfSale.setId(productsOfSaleDTO.getProductOrSaleId());
             productsOfSale.setQuantity(productsOfSaleDTO.getQuantity());
             productsOfSale.setUpdateAt(productsOfSaleDTO.getUpdateAt());
+            productsOfSale.setProduct(product);
             productsOfSaleRepository.save(productsOfSale);
             baseResponse.setData(productsOfSaleDTO);
             baseResponse.setMessage(Constant.SUCCESS_UPDATE_MESSAGE);

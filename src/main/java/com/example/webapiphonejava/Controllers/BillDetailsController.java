@@ -26,17 +26,23 @@ public class BillDetailsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse<BillDetailsDTO>> addBillDetails(@Valid @RequestBody BillDetailsDTO billDetailsDTO){
-        BaseResponse<BillDetailsDTO> baseResponse = billDetailsService.addBillDetails(billDetailsDTO);
+    public ResponseEntity<BaseResponse<BillDetailsDTO>> addBillDetails(
+            @Valid @RequestBody BillDetailsDTO billDetailsDTO,
+            @RequestParam("billId") Integer billId,
+            @RequestParam("productId") Integer productId
+    ){
+        BaseResponse<BillDetailsDTO> baseResponse = billDetailsService.addBillDetails(billDetailsDTO, billId, productId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
     public ResponseEntity<BaseResponse<BillDetailsDTO>> updateBillDetailsById(
             @Valid @RequestBody BillDetailsDTO billDetailsDTO,
-            @RequestParam("billDetailsId") Integer billDetailsId
+            @RequestParam("billDetailsId") Integer billDetailsId,
+            @RequestParam("billId") Integer billId,
+            @RequestParam("productId") Integer productId
             ) {
-        BaseResponse<BillDetailsDTO> baseResponse = billDetailsService.updateBillDetailsById(billDetailsDTO, billDetailsId);
+        BaseResponse<BillDetailsDTO> baseResponse = billDetailsService.updateBillDetailsById(billDetailsDTO, billDetailsId, billId, productId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 

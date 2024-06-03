@@ -27,17 +27,21 @@ public class CommentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse<CommentDTO>> addComment(@Valid @RequestBody CommentDTO commentDTO) {
-        BaseResponse<CommentDTO> baseResponse = commentService.addComment(commentDTO);
+    public ResponseEntity<BaseResponse<CommentDTO>> addComment(
+            @Valid @RequestBody CommentDTO commentDTO,
+            @RequestParam("categoryId") Integer categoryId
+            ) {
+        BaseResponse<CommentDTO> baseResponse = commentService.addComment(commentDTO, categoryId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
     public ResponseEntity<BaseResponse<CommentDTO>> updateCommentById(
             @Valid @RequestBody CommentDTO commentDTO,
-            @RequestParam("commentId") Integer commentId
+            @RequestParam("commentId") Integer commentId,
+            @RequestParam("categoryId") Integer categoryId
     ) {
-        BaseResponse<CommentDTO> baseResponse = commentService.updateCommentById(commentDTO, commentId);
+        BaseResponse<CommentDTO> baseResponse = commentService.updateCommentById(commentDTO, commentId, categoryId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 
