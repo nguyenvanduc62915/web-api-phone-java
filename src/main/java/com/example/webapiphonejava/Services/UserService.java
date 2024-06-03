@@ -31,7 +31,7 @@ public class UserService implements UserImp {
             for (User user : userList){
                 UserDTO userDTO = new UserDTO();
                 userDTO.setUserId(user.getId());
-                userDTO.setUserName(user.getUsername());
+                userDTO.setUserName(user.getUserName());
                 userDTO.setName(user.getName());
                 userDTO.setPassword(user.getPassword());
                 userDTO.setCreateAt(user.getCreateAt());

@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "conditions")
@@ -24,5 +24,5 @@ public class Condition extends BaseEntity {
     private String orderStatus;
     @OneToMany(mappedBy = "condition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonInclude
-    private Set<Bill> bills;
+    private List<Bill> bills;
 }

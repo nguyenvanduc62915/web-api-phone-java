@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table(name = "shippers")
@@ -30,5 +31,5 @@ public class Shipper extends BaseEntity {
     private String phoneShipperTwo;
     @OneToMany(mappedBy = "shipper", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Bill> bills;
+    private List<Bill> bills;
 }

@@ -7,7 +7,6 @@ import com.example.webapiphonejava.Repositories.ProductRepository;
 import com.example.webapiphonejava.Services.Imp.ProductImp;
 import com.example.webapiphonejava.Utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

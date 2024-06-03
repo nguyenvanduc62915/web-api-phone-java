@@ -1,10 +1,15 @@
 package com.example.webapiphonejava.DTO;
 
+import com.example.webapiphonejava.Models.BillDetails;
+import com.example.webapiphonejava.Models.Category;
+import com.example.webapiphonejava.Models.Comment;
+import com.example.webapiphonejava.Models.ProductsOfSale;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -43,4 +48,8 @@ public class ProductDTO {
     private LocalDate endSale;
     private LocalDate createAt;
     private LocalDate updateAt;
+    private CategoryDTO category;
+    private List<CommentDTO> comments;
+    private List<BillDetailsDTO> billDetails;
+    private List<ProductsOfSaleDTO> productsOfSales;
 }

@@ -1,5 +1,6 @@
 package com.example.webapiphonejava.DTO;
 
+import com.example.webapiphonejava.Models.Product;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -12,4 +13,5 @@ public class ProductsOfSaleDTO {
     private int quantity;
     private LocalDate createAt;
     private LocalDate updateAt;
+    private ProductDTO product;
 }

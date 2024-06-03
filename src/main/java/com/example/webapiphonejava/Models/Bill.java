@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "bills")
@@ -41,5 +41,5 @@ public class Bill extends BaseEntity {
     private Shipper shipper;
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<BillDetails> billDetails;
+    private List<BillDetails> billDetails;
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,5 +15,6 @@ public class ConditionDTO {
     private String orderStatus;
     private LocalDate createAt;
     private LocalDate updateAt;
+    private List<BillDTO> bills;
 }
 

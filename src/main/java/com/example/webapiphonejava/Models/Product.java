@@ -8,7 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table(name = "products")
@@ -70,18 +71,15 @@ public class Product extends BaseEntity {
     @Column(name = "end_sale")
     private LocalDate endSale;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "products_of_sale_id", foreignKey = @ForeignKey(name = "FK_PRODUCTS_OF_SALE_PRODUCT"))
-    private ProductsOfSale productsOfSale;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "FK_CATEGORY_PRODUCT"))
     private Category category;
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Comment> comments;
+    private List<Comment> comments;
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<BillDetails> billDetails;
+    private List<BillDetails> billDetails;
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<ProductsOfSale> productsOfSales;
+    private List<ProductsOfSale> productsOfSales;
 }

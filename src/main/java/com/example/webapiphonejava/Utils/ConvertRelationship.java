@@ -4,9 +4,12 @@ import com.example.webapiphonejava.DTO.*;
 import com.example.webapiphonejava.Models.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class ConvertRelationship {
-    public Bill convertToBill(BillDTO billDTO){
+    public Bill convertToBill(BillDTO billDTO) {
         Bill bill = new Bill();
         bill.setId(billDTO.getBillId());
         bill.setNote(billDTO.getNote());
@@ -18,7 +21,7 @@ public class ConvertRelationship {
         return bill;
     }
 
-    public BillDTO convertToBillDTO(Bill bill){
+    public BillDTO convertToBillDTO(Bill bill) {
         BillDTO billDTO = new BillDTO();
         billDTO.setBillId(bill.getId());
         billDTO.setNote(bill.getNote());
@@ -30,7 +33,7 @@ public class ConvertRelationship {
         return billDTO;
     }
 
-    public BillDetails convertToBillDetails(BillDetailsDTO billDetailsDTO){
+    public BillDetails convertToBillDetails(BillDetailsDTO billDetailsDTO) {
         BillDetails billDetails = new BillDetails();
         billDetails.setId(billDetailsDTO.getBillDetailsId());
         billDetails.setPrice(billDetailsDTO.getPrice());
@@ -40,7 +43,7 @@ public class ConvertRelationship {
         return billDetails;
     }
 
-    public BillDetailsDTO convertToBillDetailsDTO(BillDetails billDetails){
+    public BillDetailsDTO convertToBillDetailsDTO(BillDetails billDetails) {
         BillDetailsDTO billDetailsDTO = new BillDetailsDTO();
         billDetailsDTO.setBillDetailsId(billDetails.getId());
         billDetailsDTO.setPrice(billDetails.getPrice());
@@ -50,7 +53,7 @@ public class ConvertRelationship {
         return billDetailsDTO;
     }
 
-    public Category convertToCategory(CategoryDTO categoryDTO){
+    public Category convertToCategory(CategoryDTO categoryDTO) {
         Category category = new Category();
         category.setId(categoryDTO.getCategoryId());
         category.setCategoryName(categoryDTO.getCategoryName());
@@ -59,7 +62,7 @@ public class ConvertRelationship {
         return category;
     }
 
-    public CategoryDTO convertToCategoryDTO(Category category){
+    public CategoryDTO convertToCategoryDTO(Category category) {
         CategoryDTO categoryDTO = new CategoryDTO();
         categoryDTO.setCategoryId(category.getId());
         categoryDTO.setCategoryName(category.getCategoryName());
@@ -68,7 +71,7 @@ public class ConvertRelationship {
         return categoryDTO;
     }
 
-    public Comment convertToComment(CommentDTO commentDTO){
+    public Comment convertToComment(CommentDTO commentDTO) {
         Comment comment = new Comment();
         comment.setId(commentDTO.getCommentId());
         comment.setFullName(commentDTO.getFullName());
@@ -80,7 +83,7 @@ public class ConvertRelationship {
         return comment;
     }
 
-    public CommentDTO convertToCommentDTO(Comment comment){
+    public CommentDTO convertToCommentDTO(Comment comment) {
         CommentDTO commentDTO = new CommentDTO();
         commentDTO.setCommentId(comment.getId());
         commentDTO.setFullName(comment.getFullName());
@@ -92,7 +95,7 @@ public class ConvertRelationship {
         return commentDTO;
     }
 
-    public Condition converToCondition(ConditionDTO conditionDTO){
+    public Condition converToCondition(ConditionDTO conditionDTO) {
         Condition condition = new Condition();
         condition.setId(conditionDTO.getConditionId());
         condition.setOrderStatus(conditionDTO.getOrderStatus());
@@ -101,7 +104,7 @@ public class ConvertRelationship {
         return condition;
     }
 
-    public ConditionDTO convertToConditionDTO(Condition condition){
+    public ConditionDTO convertToConditionDTO(Condition condition) {
         ConditionDTO conditionDTO = new ConditionDTO();
         conditionDTO.setConditionId(condition.getId());
         conditionDTO.setOrderStatus(condition.getOrderStatus());
@@ -110,7 +113,7 @@ public class ConvertRelationship {
         return conditionDTO;
     }
 
-    public Customer convertToCustomer(CustomerDTO customerDTO){
+    public Customer convertToCustomer(CustomerDTO customerDTO) {
         Customer customer = new Customer();
         customer.setId(customerDTO.getCustomerId());
         customer.setCustomerName(customerDTO.getCustomerName());
@@ -121,7 +124,7 @@ public class ConvertRelationship {
         return customer;
     }
 
-    public CustomerDTO convertToCustomerDTO(Customer customer){
+    public CustomerDTO convertToCustomerDTO(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setCustomerId(customer.getId());
         customerDTO.setCustomerName(customer.getCustomerName());
@@ -132,7 +135,7 @@ public class ConvertRelationship {
         return customerDTO;
     }
 
-    public Order converToOrder(OrderDTO orderDTO){
+    public Order converToOrder(OrderDTO orderDTO) {
         Order order = new Order();
         order.setId(orderDTO.getOrderId());
         order.setOrderStatus(orderDTO.getOrderStatus());
@@ -141,7 +144,7 @@ public class ConvertRelationship {
         return order;
     }
 
-    public OrderDTO converToOrderDTO(Order order){
+    public OrderDTO converToOrderDTO(Order order) {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setOrderId(order.getId());
         orderDTO.setOrderStatus(order.getOrderStatus());
@@ -150,7 +153,7 @@ public class ConvertRelationship {
         return orderDTO;
     }
 
-    public Product convertToProduct(ProductDTO productDTO){
+    public Product convertToProduct(ProductDTO productDTO) {
         Product product = new Product();
         product.setId(productDTO.getProductId());
         product.setPrice(productDTO.getPrice());
@@ -176,7 +179,7 @@ public class ConvertRelationship {
         return product;
     }
 
-    public ProductDTO convertToProductDTO(Product product){
+    public ProductDTO convertToProductDTO(Product product) {
         ProductDTO productDTO = new ProductDTO();
         productDTO.setProductId(product.getId());
         productDTO.setPrice(product.getPrice());
@@ -202,7 +205,7 @@ public class ConvertRelationship {
         return productDTO;
     }
 
-    public ProductsOfSale convertToProductsOfSale(ProductsOfSaleDTO productsOfSaleDTO){
+    public ProductsOfSale convertToProductsOfSale(ProductsOfSaleDTO productsOfSaleDTO) {
         ProductsOfSale productsOfSale = new ProductsOfSale();
         productsOfSale.setId(productsOfSaleDTO.getProductOrSaleId());
         productsOfSale.setQuantity(productsOfSaleDTO.getQuantity());
@@ -211,7 +214,7 @@ public class ConvertRelationship {
         return productsOfSale;
     }
 
-    public ProductsOfSaleDTO convertToProductsOfSaleDTO(ProductsOfSale productsOfSale){
+    public ProductsOfSaleDTO convertToProductsOfSaleDTO(ProductsOfSale productsOfSale) {
         ProductsOfSaleDTO productsOfSaleDTO = new ProductsOfSaleDTO();
         productsOfSaleDTO.setProductOrSaleId(productsOfSale.getId());
         productsOfSaleDTO.setQuantity(productsOfSale.getQuantity());
@@ -220,7 +223,7 @@ public class ConvertRelationship {
         return productsOfSaleDTO;
     }
 
-    public Shipper convertToShipper(ShipperDTO shipperDTO){
+    public Shipper convertToShipper(ShipperDTO shipperDTO) {
         Shipper shipper = new Shipper();
         shipper.setId(shipperDTO.getShipperId());
         shipper.setShipperName(shipperDTO.getShipperName());
@@ -231,7 +234,7 @@ public class ConvertRelationship {
         return shipper;
     }
 
-    public ShipperDTO convertToShipperDTO(Shipper shipper){
+    public ShipperDTO convertToShipperDTO(Shipper shipper) {
         ShipperDTO shipperDTO = new ShipperDTO();
         shipperDTO.setShipperId(shipper.getId());
         shipperDTO.setShipperName(shipper.getShipperName());
@@ -242,7 +245,7 @@ public class ConvertRelationship {
         return shipperDTO;
     }
 
-    public User convertToUser(UserDTO userDTO){
+    public User convertToUser(UserDTO userDTO) {
         User user = new User();
         user.setId(userDTO.getUserId());
         user.setName(userDTO.getName());
@@ -253,11 +256,11 @@ public class ConvertRelationship {
         return user;
     }
 
-    public UserDTO convertToUserDTO(User user){
+    public UserDTO convertToUserDTO(User user) {
         UserDTO useDTO = new UserDTO();
         useDTO.setUserId(user.getId());
         useDTO.setName(user.getName());
-        useDTO.setUserName(user.getUsername());
+        useDTO.setUserName(user.getUserName());
         useDTO.setPassword(user.getPassword());
         useDTO.setCreateAt(user.getCreateAt());
         useDTO.setUpdateAt(user.getUpdateAt());

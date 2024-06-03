@@ -25,17 +25,25 @@ public class BillController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse<BillDTO>> addBill(@Valid @RequestBody BillDTO billDTO){
-        BaseResponse<BillDTO> baseResponse = billService.addBill(billDTO);
+    public ResponseEntity<BaseResponse<BillDTO>> addBill(
+            @Valid @RequestBody BillDTO billDTO,
+            @RequestParam("conditionId") Integer conditionId,
+            @RequestParam("customerId") Integer customerId,
+            @RequestParam("shipperId") Integer shipperId
+            ){
+        BaseResponse<BillDTO> baseResponse = billService.addBill(billDTO, customerId, conditionId, shipperId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
     public ResponseEntity<BaseResponse<BillDTO>> updateBillById(
             @Valid @RequestBody BillDTO billDTO,
-            @RequestParam("billId") Integer billId
+            @RequestParam("billId") Integer billId,
+            @RequestParam("conditionId") Integer conditionId,
+            @RequestParam("customerId") Integer customerId,
+            @RequestParam("shipperId") Integer shipperId
     ){
-        BaseResponse<BillDTO> baseResponse = billService.updateBillById(billDTO, billId);
+        BaseResponse<BillDTO> baseResponse = billService.updateBillById(billDTO, billId, customerId, conditionId, shipperId);
         return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
     }
 

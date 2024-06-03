@@ -1,5 +1,6 @@
 package com.example.webapiphonejava.DTO;
 
+import com.example.webapiphonejava.Models.Product;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -19,4 +20,5 @@ public class CommentDTO {
     private String phone;
     private LocalDate createAt;
     private LocalDate updateAt;
+    private ProductDTO product;
 }
