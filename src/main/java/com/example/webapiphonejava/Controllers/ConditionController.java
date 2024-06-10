@@ -7,6 +7,7 @@ import com.example.webapiphonejava.Models.Condition;
 import com.example.webapiphonejava.Services.ConditionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,13 @@ public class ConditionController {
     @GetMapping("/get_all")
     public ResponseEntity<BaseResponse<List<ConditionDTO>>> getAllCondition(){
         BaseResponse<List<ConditionDTO>> baseResponse = conditionService.getAllCondition();
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PostMapping("/add")
     public ResponseEntity<BaseResponse<ConditionDTO>> addCondition(@Valid @RequestBody ConditionDTO conditionDTO) {
         BaseResponse<ConditionDTO> baseResponse = conditionService.addCondition(conditionDTO);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
@@ -38,12 +39,12 @@ public class ConditionController {
             @RequestParam("conditionId") Integer conditionId
     ) {
         BaseResponse<ConditionDTO> baseResponse = conditionService.updateConditionById(conditionDTO, conditionId);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<BaseResponse<ConditionDTO>> deleteConditionById(@RequestParam("conditionId") Integer conditionId) {
         BaseResponse<ConditionDTO> baseResponse = conditionService.deleteConditionById(conditionId);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 }

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShipperRepository extends JpaRepository<Shipper, Integer> {
-    @Query("SELECT s FROM Shipper s WHERE s.id =: shipperId")
+    @Query("SELECT s FROM Shipper s WHERE s.id = :shipperId")
     Shipper findShipperById(@Param("shipperId") Integer shipperId);
 }

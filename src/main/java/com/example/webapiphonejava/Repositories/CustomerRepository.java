@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    @Query("SELECT cr FROM Customer cr WHERE cr.id =: customerId")
+    @Query("SELECT cr FROM Customer cr WHERE cr.id = :customerId")
     Customer findCustomerById(@Param("customerId") Integer customerId);
 }

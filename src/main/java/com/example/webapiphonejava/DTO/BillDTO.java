@@ -3,6 +3,7 @@
     import com.example.webapiphonejava.Models.*;
     import com.fasterxml.jackson.annotation.JsonInclude;
     import jakarta.validation.constraints.Size;
+    import lombok.AllArgsConstructor;
     import lombok.Data;
     import lombok.NoArgsConstructor;
 
@@ -11,7 +12,6 @@
 
     @Data
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @NoArgsConstructor
     public class BillDTO {
         private int billId;
         private LocalDate orderDate;

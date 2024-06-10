@@ -71,7 +71,17 @@ Project làm về Web APIs về đề tài quản lý cửa hàng điện thoạ
     password: ....
 ```
 Lưu ý: đường dẫn phải đúng tên cơ sở dữ liệu vừa tạo và phải đúng tài khoản mật khẩu MySQL trên máy
-- Step 3: Mở Terminal trên IntelliJ IDEA hoặc ẩn tổ hợp phím "Alt + F12" gõ lệnh
+- Step 3: 
+  - Ấn tổ hợp phím "Shift + F10" (Khuyến khích chạy bằng cách này)
+  - Hoặc vào project tìm vào src -> main -> java -> com.example.webapiphonejava -> WebApiPhoneJavaApplication (Khuyến khích chạy bằng cách này)
+```dos
+├───src                             
+|   ├───main
+|   |   ├───java
+|   |   |   ├───com.example.wedapiphonejava
+|   |   |   |   ├───WebApiPhoneJavaApplication (File Main của chương trình)
+```
+  - Mở Terminal trên IntelliJ IDEA hoặc ẩn tổ hợp phím "Alt + F12" gõ lệnh "./mvnw spring-boot:run" (Không khuyến khích dùng cách này do sẽ dễ xảy ra lỗi  org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile )
 ```mvn
     ./mvnw spring-boot:run
 ```
@@ -80,7 +90,7 @@ Lưu ý: đường dẫn phải đúng tên cơ sở dữ liệu vừa tạo và
 ## Cấu trúc của thư mục nguồn
 GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 ```dos
-|   Readme.docx
+|   Readme.docx                     (Demo và các hình ảnh liên quan đến dự án)
 |   README.md                       (Hướng dẫn)
 |       
 ├───.idea                           (File cấu hình môi trường code Intellij IDEA)
@@ -206,6 +216,8 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   |   |   |   |
 ├───mvnw.cmd (  File này có chức năng đảm bảo Apache Maven có sẵn và được sử dụng trong hệ thống )
 |   |   |   |   |
-├───pom (  File  trung tâm của dự án có chức năng cấu hình mà Maven xử lý)
+├───pom.xml (  File  trung tâm của dự án có chức năng cấu hình mà Maven xử lý)
 |   |   |   |   |
 ```
+## Demo
+Link <https://husteduvn-my.sharepoint.com/personal/duc_nv210134p_sis_hust_edu_vn/_layouts/15/doc.aspx?sourcedoc={5c716eda-e22c-443a-b2a5-7eb321ab746c}&action=edit>

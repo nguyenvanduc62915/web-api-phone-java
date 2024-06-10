@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
-    @Query("SELECT ct FROM Comment ct WHERE ct.id =: commentId")
+    @Query("SELECT ct FROM Comment ct WHERE ct.id = :commentId")
     Comment findCommentById(@Param("commentId") Integer commentId);
 }

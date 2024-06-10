@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategorRepository extends JpaRepository<Category, Integer> {
-    @Query("SELECT c FROM Category c WHERE c.id =: categoryId")
+    @Query("SELECT c FROM Category c WHERE c.id = :categoryId")
     Category findCategoryById(@Param("categoryId") Integer categoryId);
 }

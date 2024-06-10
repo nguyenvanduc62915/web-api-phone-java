@@ -5,6 +5,7 @@ import com.example.webapiphonejava.Models.Category;
 import com.example.webapiphonejava.Models.Comment;
 import com.example.webapiphonejava.Models.ProductsOfSale;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -17,7 +18,7 @@ public class ProductDTO {
     private int productId;
     @Size(max = 100, message = "Tên sản phẩm cho phép tối đa 100 kỹ tự!")
     private String productName;
-    @Size(max = 50, message = "Ảnh sản phẩm cho phép tối đa 100 kỹ tự!")
+    @Max(value = 50, message = "Ảnh sản phẩm cho phép tối đa 100 kỹ tự!")
     private int productImage;
     private int price;
     private int amount;

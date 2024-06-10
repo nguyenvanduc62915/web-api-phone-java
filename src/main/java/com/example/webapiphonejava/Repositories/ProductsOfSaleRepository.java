@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductsOfSaleRepository extends JpaRepository<ProductsOfSale, Integer> {
-    @Query("SELECT pe FROM ProductsOfSale pe WHERE pe.id =: productsOfSaleId")
+    @Query("SELECT pe FROM ProductsOfSale pe WHERE pe.id = :productsOfSaleId")
     ProductsOfSale findProductsOfSaleById(@Param("productsOfSaleId") Integer productsOfSaleId);
 }

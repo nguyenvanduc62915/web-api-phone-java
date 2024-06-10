@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConditionRepository extends JpaRepository<Condition, Integer> {
-    @Query("SELECT cn FROM Condition cn WHERE cn.id =: conditionId")
+    @Query("SELECT cn FROM Condition cn WHERE cn.id = :conditionId")
     Condition findConditionId(@Param("conditionId") Integer conditionId);
+
 }

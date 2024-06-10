@@ -2,18 +2,23 @@ package com.example.webapiphonejava.Services;
 
 import com.example.webapiphonejava.DTO.BaseResponse;
 import com.example.webapiphonejava.DTO.BillDTO;
-import com.example.webapiphonejava.DTO.BillDetailsDTO;
-import com.example.webapiphonejava.Models.*;
-import com.example.webapiphonejava.Repositories.*;
+import com.example.webapiphonejava.Models.Bill;
+import com.example.webapiphonejava.Models.Condition;
+import com.example.webapiphonejava.Models.Customer;
+import com.example.webapiphonejava.Models.Shipper;
+import com.example.webapiphonejava.Repositories.BillRepository;
+import com.example.webapiphonejava.Repositories.ConditionRepository;
+import com.example.webapiphonejava.Repositories.CustomerRepository;
+import com.example.webapiphonejava.Repositories.ShipperRepository;
 import com.example.webapiphonejava.Services.Imp.BillImp;
 import com.example.webapiphonejava.Utils.Constant;
 import com.example.webapiphonejava.Utils.ConvertRelationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BillService implements BillImp {
@@ -68,34 +73,33 @@ public class BillService implements BillImp {
     }
 
     @Override
-    public BaseResponse<BillDTO> addBill(BillDTO billDTO, Integer customerId, Integer conditionId, Integer shipperId) {
+    public BaseResponse<BillDTO> addBill(BillDTO billDTO, Integer conditionId, Integer customerId, Integer shipperId) {
         BaseResponse<BillDTO> baseResponse = new BaseResponse<>();
         try {
             Condition condition = conditionRepository.findConditionId(conditionId);
-            if (condition == null){
+            if (condition == null) {
                 baseResponse.setMessage(Constant.EMPTY_CONDITION_ID + conditionId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
             Customer customer = customerRepository.findCustomerById(customerId);
-            if (customer == null){
+            if (customer == null) {
                 baseResponse.setMessage(Constant.EMPTY_CUSTOMER_ID + customerId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
             Shipper shipper = shipperRepository.findShipperById(shipperId);
-            if (shipper == null){
+            if (shipper == null) {
                 baseResponse.setMessage(Constant.EMPTY_SHIPPER_ID + shipperId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
             Bill bill = new Bill();
-            bill.setId(billDTO.getBillId());
             bill.setReceivingAddress(billDTO.getReceivingAddress());
             bill.setNote(billDTO.getNote());
             bill.setTotalAmount(billDTO.getTotalAmount());
-            bill.setOrderDate(billDTO.getOrderDate());
-            bill.setCreateAt(billDTO.getCreateAt());
+            bill.setOrderDate(LocalDate.now());
+            bill.setCreateAt(LocalDate.now());
             bill.setCondition(condition);
             bill.setCustomer(customer);
             bill.setShipper(shipper);
@@ -111,7 +115,7 @@ public class BillService implements BillImp {
     }
 
     @Override
-    public BaseResponse<BillDTO> updateBillById(BillDTO billDTO, Integer billId, Integer customerId, Integer conditionId, Integer shipperId) {
+    public BaseResponse<BillDTO> updateBillById(BillDTO billDTO, Integer billId, Integer conditionId, Integer customerId, Integer shipperId) {
         BaseResponse<BillDTO> baseResponse = new BaseResponse<>();
         try {
             Bill bill = billRepository.findBillById(billId);
@@ -121,19 +125,19 @@ public class BillService implements BillImp {
                 return baseResponse;
             }
             Condition condition = conditionRepository.findConditionId(conditionId);
-            if (condition == null){
+            if (condition == null) {
                 baseResponse.setMessage(Constant.EMPTY_CONDITION_ID + conditionId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
             Customer customer = customerRepository.findCustomerById(customerId);
-            if (customer == null){
+            if (customer == null) {
                 baseResponse.setMessage(Constant.EMPTY_CUSTOMER_ID + customerId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;
             }
             Shipper shipper = shipperRepository.findShipperById(shipperId);
-            if (shipper == null){
+            if (shipper == null) {
                 baseResponse.setMessage(Constant.EMPTY_SHIPPER_ID + shipperId);
                 baseResponse.setCode(Constant.NOT_FOUND_CODE);
                 return baseResponse;

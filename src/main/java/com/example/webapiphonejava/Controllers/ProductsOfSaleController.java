@@ -5,6 +5,7 @@ import com.example.webapiphonejava.DTO.ProductsOfSaleDTO;
 import com.example.webapiphonejava.Services.ProductsOfSaleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class ProductsOfSaleController {
     @GetMapping("/get_all")
     public ResponseEntity<BaseResponse<List<ProductsOfSaleDTO>>> getAllProductsOfSale(){
         BaseResponse<List<ProductsOfSaleDTO>> baseResponse = productsOfSaleService.getAllProductsOfSale();
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PostMapping("/add")
@@ -30,7 +31,7 @@ public class ProductsOfSaleController {
             @RequestParam("productId") Integer productId
             ){
         BaseResponse<ProductsOfSaleDTO> baseResponse = productsOfSaleService.addProductsOfSale(productsOfSaleDTO, productId);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
@@ -40,7 +41,7 @@ public class ProductsOfSaleController {
             @RequestParam("productId") Integer productId
     ) {
         BaseResponse<ProductsOfSaleDTO> baseResponse = productsOfSaleService.updateProductsOfSaleById(productsOfSaleDTO, productsOfSaleId, productId);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @DeleteMapping("/delete")

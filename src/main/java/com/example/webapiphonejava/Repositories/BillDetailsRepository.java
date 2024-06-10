@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public interface BillDetailsRepository extends JpaRepository<BillDetails, Integer> {
-    @Query("SELECT bd FROM BillDetails bd WHERE bd.id =: billDetailsId")
+    @Query("SELECT bd FROM BillDetails bd WHERE bd.id = :billDetailsId")
     BillDetails findBillDetailsById(@RequestParam("billDetailsId") Integer billDetailsId);
 }

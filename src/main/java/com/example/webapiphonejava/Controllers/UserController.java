@@ -5,6 +5,7 @@ import com.example.webapiphonejava.DTO.UserDTO;
 import com.example.webapiphonejava.Services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,13 @@ public class UserController {
     @GetMapping("/get_all")
     public ResponseEntity<BaseResponse<List<UserDTO>>> getAllUser() {
         BaseResponse<List<UserDTO>> baseResponse = userService.getAllUser();
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PostMapping("/add")
     public ResponseEntity<BaseResponse<UserDTO>> addUser(@Valid @RequestBody UserDTO userDTO) {
         BaseResponse<UserDTO> baseResponse = userService.addUser(userDTO);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
     @PutMapping("/update")
@@ -36,12 +37,12 @@ public class UserController {
             @RequestParam("userId") Integer userId
     ) {
         BaseResponse<UserDTO> baseResponse = userService.updateUserById(userDTO, userId);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 
-    @PutMapping("/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<BaseResponse<UserDTO>> deleteUserById(@RequestParam("userId") Integer userId) {
         BaseResponse<UserDTO> baseResponse = userService.deleteUserById(userId);
-        return new ResponseEntity<>(baseResponse, HttpStatusCode.valueOf(baseResponse.getCode()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.valueOf(baseResponse.getCode()));
     }
 }

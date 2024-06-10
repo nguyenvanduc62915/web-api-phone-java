@@ -45,26 +45,29 @@ public class SeedDataConfiguration {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SeeđDataRepository seeđDataRepository;
+
     private boolean isSeedData = false;
 
     @Bean
     public CommandLineRunner seedData() {
         return args -> {
-            if (!isSeedData) {
-                seedDataBill();
-                seedDataBillDetails();
-                seedDataCategory();
-                seedDataComment();
-                seedDataCondition();
-                seedDataCustomer();
-                seedDataOrder();
-                seedDataProduct();
-                seedDataProductsOfSale();
-                seedDataProductsOfSale();
-                seedDataShipper();
-                seedDataUser();
-                isSeedData = true;
+            if (seeđDataRepository.findById(1L).orElse(new SeedData(1L, false)).isSeeded()) {
+                return;
             }
+            seedDataBill();
+            seedDataBillDetails();
+            seedDataCategory();
+            seedDataComment();
+            seedDataCondition();
+            seedDataCustomer();
+            seedDataOrder();
+            seedDataProduct();
+            seedDataProductsOfSale();
+            seedDataShipper();
+            seedDataUser();
+            seeđDataRepository.save(new SeedData(1L, true));
         };
     }
     Order order_1 = new Order(1, "Còn hàng");
