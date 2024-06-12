@@ -220,4 +220,4 @@ GitHib: <https://github.com/nguyenvanduc62915/web-api-phone-java>
 |   |   |   |   |
 ```
 ## Demo
-Link <https://husteduvn-my.sharepoint.com/personal/duc_nv210134p_sis_hust_edu_vn/_layouts/15/doc.aspx?sourcedoc={5c716eda-e22c-443a-b2a5-7eb321ab746c}&action=edit>
+Link <https://husteduvn-my.sharepoint.com/:w:/g/personal/duc_nv210134p_sis_hust_edu_vn/EdpucVws4jpEsqV-syGrdGwBeLY106MvcSZL5Pc6b4_IqA?e=1LbwI7>
